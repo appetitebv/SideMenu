@@ -50,11 +50,13 @@ public class UISideMenuNavigationController: UINavigationController {
                 self.view.hidden = false
             })
         }
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("sideMenuClosed", object: nil, userInfo: ["message" : "on"])
     }
     
     override public func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        NSNotificationCenter.defaultCenter().postNotificationName("sideMenuClosed", object: nil, userInfo: ["message" : "off"])
         // when presenting a view controller from the menu, the menu view gets moved into another transition view above our transition container
         // which can break the visual layout we had before. So, we move the menu view back to its original transition view to preserve it.
         if !isBeingDismissed() {

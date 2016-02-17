@@ -162,7 +162,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
             menuView.frame.origin.x = SideMenuTransition.presentDirection == .Left ? -menuView.frame.width : mainViewController.view.frame.width
             
         case .MenuDissolveIn:
-            menuView.alpha = 0
+            menuView.alpha = 1 - SideMenuManager.menuAnimationFadeStrength
             menuView.frame.origin.x = SideMenuTransition.presentDirection == .Left ? 0 : mainViewController.view.frame.width - SideMenuManager.menuWidth
             mainViewController.view.frame.origin.x = 0
         }
@@ -277,6 +277,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
             exitTapGesture.addTarget(SideMenuTransition.self, action: "handleHideMenuTap:")
             tapView.addGestureRecognizer(exitPanGesture)
             tapView.addGestureRecognizer(exitTapGesture)
+            tapView.frame = CGRectMake(200, 0, 100, 600)
             SideMenuTransition.tapView = tapView
             
             SideMenuTransition.originalSuperview = topView.superview
@@ -289,8 +290,15 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
                 topView.addSubview(tapView)
             case .MenuSlideIn, .MenuDissolveIn:
                 container.addSubview(topView)
+                
+                let button = SideMenuManager.frameForVerifyButton!
+                button.translatesAutoresizingMaskIntoConstraints = true
                 container.addSubview(tapView)
+                
                 container.addSubview(menuView)
+                container.addSubview(button)
+                
+                
             }
             
             if SideMenuManager.menuFadeStatusBar {

@@ -43,6 +43,7 @@ public class SideMenuManager {
     public static weak var menuRightSwipeToDismissGesture: UIPanGestureRecognizer?
     public static var menuParallaxStrength: Int = 0
     public static var menuFadeStatusBar = true
+    public static var frameForVerifyButton : UIButton?
     
     // Note: if you want cells in a UITableViewController menu to look good, make them a subclass of UITableViewVibrantCell!
     public static var menuBlurEffectStyle: UIBlurEffectStyle? {
@@ -134,10 +135,37 @@ public class SideMenuManager {
             tableViewController.tableView.reloadData()
         } else if let viewController = forMenu.visibleViewController {
             viewController.view.backgroundColor = UIColor.clearColor()
-            
-            let blurView = UIVisualEffectView(effect: UIBlurEffect(style: menuBlurEffectStyle!))
+            viewController.view.alpha = 1
+            let blurView = UIView()
             blurView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
-            blurView.frame = viewController.view.bounds
+            
+            
+            
+            if (UIScreen.mainScreen().bounds.width == 320) {
+                //@1x
+                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.76), 240), viewController.view.bounds.height)
+            }
+            
+            else if UIScreen.mainScreen().bounds.width == 375 {
+                //@2x
+                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.79), 240), viewController.view.bounds.height)
+                
+            }
+            
+            else if UIScreen.mainScreen().bounds.width == 414 {
+                //@3x
+                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.81), 240), viewController.view.bounds.height)
+                
+            }
+            
+            else {
+                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.77), 240), viewController.view.bounds.height)
+            }
+            
+            blurView.backgroundColor = UIColor(red: 31/255, green: 34/255, blue: 34/255, alpha: 0.6)
+            blurView.alpha = 1
+            
+            //print(UIScreen.mainScreen().bounds.width)
             
             viewController.view.insertSubview(blurView, atIndex: 0)
         }
