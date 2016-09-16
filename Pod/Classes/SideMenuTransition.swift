@@ -345,9 +345,6 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
                 }
 
                 container.addSubview(menuView)
-                container.addSubview(button)
-                
-                
             }
             
             if SideMenuManager.menuFadeStatusBar {
