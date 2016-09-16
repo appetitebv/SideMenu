@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = "SideMenu"
-  s.version          = "1.0.3"
-  s.summary          = "Simple side menu control in Swift inspired by Facebook. Right and Left sides. No coding required."
+  s.version          = "1.2.1"
+  s.summary          = "Simple side menu control for iOS in Swift inspired by Facebook. Right and Left sides. No coding required."
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
                        DESC
 
   s.homepage         = "https://github.com/jonkykong/SideMenu"
-  s.screenshot       = "https://raw.githubusercontent.com/jonkykong/SideMenu/master/etc/Preview.gif"
+  s.screenshots      = [ "https://raw.githubusercontent.com/jonkykong/SideMenu/master/etc/SlideOut.gif", "https://raw.githubusercontent.com/jonkykong/SideMenu/master/etc/SlideIn.gif", "https://raw.githubusercontent.com/jonkykong/SideMenu/master/etc/Dissolve.gif", "https://raw.githubusercontent.com/jonkykong/SideMenu/master/etc/InOut.gif" ]
   s.license          = 'MIT'
   s.author           = { "jonkykong" => "jonk@jonked.com" }
   s.source           = { :git => "https://github.com/appetitebv/SideMenu.git", :tag => s.version.to_s }
