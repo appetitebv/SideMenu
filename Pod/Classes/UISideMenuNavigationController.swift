@@ -61,7 +61,7 @@ open class UISideMenuNavigationController: UINavigationController {
             })
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName("sideMenuClosed", object: nil, userInfo: ["message" : "on"])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sideMenuClosed"), object: nil, userInfo: ["message" : "on"])
         
         if topViewController == nil {
             print("SideMenu Warning: the menu doesn't have a view controller to show! UISideMenuNavigationController needs a view controller to display just like a UINavigationController.")
@@ -70,7 +70,7 @@ open class UISideMenuNavigationController: UINavigationController {
     
     override open func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().postNotificationName("sideMenuClosed", object: nil, userInfo: ["message" : "off"])
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sideMenuClosed"), object: nil, userInfo: ["message" : "off"])
         // when presenting a view controller from the menu, the menu view gets moved into another transition view above our transition container
         // which can break the visual layout we had before. So, we move the menu view back to its original transition view to preserve it.
         if !isBeingDismissed {

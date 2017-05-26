@@ -426,14 +426,14 @@ extension SideMenuTransition: UIViewControllerAnimatedTransitioning {
         // prepare menu items to slide in
         if presenting {
             let tapView = UIView()
-            tapView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+            tapView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             let exitPanGesture = UIPanGestureRecognizer()
             exitPanGesture.addTarget(SideMenuTransition.self, action:"handleHideMenuPan:")
             let exitTapGesture = UITapGestureRecognizer()
             exitTapGesture.addTarget(SideMenuTransition.self, action: "handleHideMenuTap:")
             tapView.addGestureRecognizer(exitPanGesture)
             tapView.addGestureRecognizer(exitTapGesture)
-            tapView.frame = CGRectMake(200, 0, 100, 600)
+            tapView.frame = CGRect(x: 200, y: 0, width: 100, height: 600)
             SideMenuTransition.tapView = tapView
             
             SideMenuTransition.originalSuperview = topView.superview

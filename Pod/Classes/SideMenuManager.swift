@@ -64,22 +64,7 @@ open class SideMenuManager : NSObject {
      */
     open static var menuPresentMode: MenuPresentMode = .viewSlideOut
     
-    public static var menuPresentMode:MenuPresentMode = .ViewSlideOut
     public static var menuAllowPushOfSameClassTwice = true
-    public static var menuAllowPopIfPossible = false
-    public static var menuWidth: CGFloat = max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height) * 0.75), 240)
-    public static var menuAnimationPresentDuration = 0.35
-    public static var menuAnimationDismissDuration = 0.35
-    public static var menuAnimationFadeStrength: CGFloat = 0
-    public static var menuAnimationShrinkStrength: CGFloat = 1
-    public static var menuAnimationBackgroundColor: UIColor?
-    public static var menuShadowOpacity: Float = 0.5
-    public static var menuShadowColor = UIColor.blackColor()
-    public static var menuShadowRadius: CGFloat = 5
-    public static weak var menuLeftSwipeToDismissGesture: UIPanGestureRecognizer?
-    public static weak var menuRightSwipeToDismissGesture: UIPanGestureRecognizer?
-    public static var menuParallaxStrength: Int = 0
-    public static var menuFadeStatusBar = true
     public static var frameForVerifyButton : UIButton?
     
     /// Width of the menu when presented on screen, showing the existing view controller in the remaining space. Default is 75% of the screen width.
@@ -317,32 +302,32 @@ open class SideMenuManager : NSObject {
             tableViewController.tableView.separatorEffect = UIVibrancyEffect(blurEffect: blurEffect)
             tableViewController.tableView.reloadData()
         } else if let viewController = forMenu.visibleViewController {
-            viewController.view.backgroundColor = UIColor.clearColor()
+            viewController.view.backgroundColor = UIColor.clear
             viewController.view.alpha = 1
             let blurView = UIView()
-            blurView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+            blurView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
             
             
             
-            if (UIScreen.mainScreen().bounds.width == 320) {
+            if (UIScreen.main.bounds.width == 320) {
                 //@1x
-                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.76), 240), viewController.view.bounds.height)
+                blurView.frame = CGRect(x: viewController.view.bounds.minX, y: viewController.view.bounds.minY, width: max(round(min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)*0.76), 240), height: viewController.view.bounds.height)
             }
             
-            else if UIScreen.mainScreen().bounds.width == 375 {
+            else if UIScreen.main.bounds.width == 375 {
                 //@2x
-                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.79), 240), viewController.view.bounds.height)
+                blurView.frame = CGRect(x: viewController.view.bounds.minX, y: viewController.view.bounds.minY, width: max(round(min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)*0.79), 240), height: viewController.view.bounds.height)
                 
             }
             
-            else if UIScreen.mainScreen().bounds.width == 414 {
+            else if UIScreen.main.bounds.width == 414 {
                 //@3x
-                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.81), 240), viewController.view.bounds.height)
+                blurView.frame = CGRect(x: viewController.view.bounds.minX, y: viewController.view.bounds.minY, width: max(round(min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)*0.81), 240), height: viewController.view.bounds.height)
                 
             }
             
             else {
-                blurView.frame = CGRectMake(viewController.view.bounds.minX, viewController.view.bounds.minY, max(round(min(UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)*0.77), 240), viewController.view.bounds.height)
+                blurView.frame = CGRect(x: viewController.view.bounds.minX, y: viewController.view.bounds.minY, width: max(round(min(UIScreen.main.bounds.width, UIScreen.main.bounds.height)*0.77), 240), height: viewController.view.bounds.height)
             }
             
             blurView.backgroundColor = UIColor(red: 31/255, green: 34/255, blue: 34/255, alpha: 0.6)
@@ -350,7 +335,7 @@ open class SideMenuManager : NSObject {
             
             //print(UIScreen.mainScreen().bounds.width)
             
-            viewController.view.insertSubview(blurView, atIndex: 0)
+            viewController.view.insertSubview(blurView, at: 0)
         }
     }
     
